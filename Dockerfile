@@ -1,10 +1,10 @@
-FROM php:7.4-apache
+FROM php:5.6-apache
 
 # definir punto de entrada de la imagen
 WORKDIR /etc/apache2
 
 # copiar el directorio de entrada del hosts
-COPY ./index.html /var/www/html
+COPY ./index.php /var/www/html
 
 # actualizar dependencias
 RUN apt-get update
@@ -43,7 +43,7 @@ RUN docker-php-ext-install \
     zip \
     soap
 
-# añadir las extensiones con los flags correctos para soportar las configuraciones de php 7.4
+# añadir las extensiones con los flags correctos para soportar las configuraciones de php 5.6
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
         && docker-php-ext-install gd
 
